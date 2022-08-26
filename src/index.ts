@@ -11,6 +11,8 @@
 * */
 
 import { Observable } from 'rxjs';
+import {Kulkas} from "./observable/kulkas";
+// import {Kulkas} from "./observable/kulkas";
 
 // class PromiseVersusObservable {
 //   myObservable: any;
@@ -58,3 +60,16 @@ import { Observable } from 'rxjs';
 // const promiseObservable: PromiseVersusObservable = new PromiseVersusObservable()
 // promiseObservable.create();
 
+const kulkas: Kulkas = new Kulkas()
+kulkas.buka().subscribe((data) => console.log(data))
+kulkas.action.lihat().subscribe((data) => console.log(data))
+kulkas.action.simpan('Nanas').subscribe((data) => console.log(data))
+kulkas.action.simpan('Mangga').subscribe((data) => console.log(data))
+kulkas.action.lihat().subscribe((data) => console.log(data))
+kulkas.action.ambil('Nanas').subscribe((data) => console.log(data))
+kulkas.action.ambil('Nanas').subscribe((data) => console.log(data))
+kulkas.action.lihat().subscribe((data) => console.log(data))
+
+setTimeout(() => {
+    kulkas.tutup().subscribe((data) => console.log(data))
+}, 5000)

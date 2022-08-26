@@ -1,5 +1,5 @@
 import { IAction, IKulkas } from './ikulkas';
-import {Observable} from "rxjs";
+import {Observable, Observer} from "rxjs";
 
 class Action implements IAction {
   isi: string[] = [];
@@ -18,7 +18,7 @@ class Action implements IAction {
   }
 
   ambil(item: string): Observable<string> {
-    return new Observable<string>((observer) => {
+    return new Observable<string>((observer: Observer<string>) => {
       setTimeout(() => {
         if (!this.condition) {
           observer.error('Kulkas belum dibuka');
@@ -62,7 +62,6 @@ export class Kulkas implements IKulkas {
     return new Observable<string>((observer) => {
       this.action.condition = false;
       console.log('Kulkas tertutup')
-      observer.next();
     });
   }
 }
